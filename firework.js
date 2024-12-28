@@ -22,7 +22,7 @@ async function fetchShapes(endpoint) {
 async function createFireworkShapes(size, scale,firework,  shapeType, translationRange) {
     let shapes;
     try {
-        shapes = await fetchShapes(`/new/shapes/${shapeType}.json`);
+        shapes = await fetchShapes(`/shapes/${shapeType}.json`);
     } catch (error) {
         console.error('Failed to fetch shapes:', error);
         return;
