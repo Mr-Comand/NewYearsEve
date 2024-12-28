@@ -11,12 +11,21 @@ function getRandomInt(min, max) {
     var a = Math.floor(Math.random() * (max - min + 1)) + min;
     return a;
 }
+const shapeCache = {};
+
 async function fetchShapes(endpoint) {
+    if (shapeCache[endpoint]) {
+        return shapeCache[endpoint];
+    }
+
     const response = await fetch(endpoint);
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
-    return await response.json();
+
+    const data = await response.json();
+    shapeCache[endpoint] = data; // Cache the response
+    return data;
 }
 
 async function createFireworkShapes(size, scale,firework,  shapeType, translationRange) {
@@ -49,6 +58,19 @@ async function createFireworkShapes(size, scale,firework,  shapeType, translatio
         firework.style.setProperty("--scale", scale / 2);
     }
 }
+// Preload the image and draw it onto a canvas
+const fireworkCanvas = document.createElement('canvas');
+const fireworkCtx = fireworkCanvas.getContext('2d');
+const fireworkImage = new Image();
+fireworkImage.src = "https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/fd/Firework_Rocket_JE2_BE2.png";
+fireworkImage.onload = () => {
+    const scaleFactor = 0.1; // Scale down by 10 times
+    fireworkCanvas.width = fireworkImage.width * scaleFactor;
+    fireworkCanvas.height = fireworkImage.height * scaleFactor;
+    fireworkCtx.drawImage(fireworkImage, 0, 0, fireworkCanvas.width, fireworkCanvas.height);
+    console.log("Image preloaded and drawn onto canvas");
+};
+
 // Function to create a new firework at a random position
 function createFirework(sequenz) {
     const firework = document.createElement('div');
@@ -92,7 +114,21 @@ function createFirework(sequenz) {
         scale = scale / (height / 50);
     }
 
-    body.innerHTML = "<img src=\"https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/fd/Firework_Rocket_JE2_BE2.png\" height=100%>"
+    // Create a new canvas and copy the content from the preloaded canvas
+    const canvasClone = document.createElement('canvas');
+    canvasClone.width = fireworkCanvas.width;
+    canvasClone.height = fireworkCanvas.height;
+    const ctxClone = canvasClone.getContext('2d');
+    ctxClone.drawImage(fireworkCanvas, 0, 0);
+
+    // Style the cloned canvas and append it to the body
+    canvasClone.style.width = fireworkCanvas.width + "px"; // Set the desired width
+    canvasClone.style.height = fireworkCanvas.height + "px"; // Set the desired height
+    canvasClone.style.position = "absolute";
+    canvasClone.style.top = "50%";
+    canvasClone.style.left = "50%";
+    canvasClone.style.transform = "translate(-50%, -50%)";
+    body.appendChild(canvasClone);
 
     if (scale >= 1) {
         firework.classList.add("ifo_hill");
