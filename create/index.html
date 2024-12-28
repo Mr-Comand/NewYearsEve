@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Creator</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shape Creator</h1>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <div class="controls">
+        <button id="save">Save Shape</button>
+        <button id="clear">Clear Canvas</button>
+        <input type="file" id="load" accept=".json">
+        <label>
+            <input type="checkbox" id="grid"> Gridify
+        </label>
+    </div>
+    <textarea id="output" rows="10" cols="50" readonly></textarea>
+    <script src="main.js"></script>
+</body>
+</html>
