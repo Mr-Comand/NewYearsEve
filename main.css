@@ -1,0 +1,225 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+
+}
+
+.firework {
+    --scale: 1;
+    position: absolute;
+    width: calc(15px*var(--scale));
+    height: calc(15px*var(--scale));
+    border-radius: 50%;
+    animation: fireworks 2s;
+
+
+}
+
+.firework>.body {
+    z-index: 11;
+    animation: fireworks_body 2s;
+
+    height: 100%;
+    width: 100%;
+    font-size: 30px;
+
+    transform: scale(var(--scale)) rotate(calc(var(--angel) - 0deg)) translate(-50%, 100%);
+
+}
+
+.firework>.head {
+    z-index: 10;
+    position: absolute;
+    width: calc(8px*var(--scale));
+    height: calc(8px*var(--scale));
+    transform: translateY(var(--translateY_v)), translateX(var(--translateX_v)), rotate(var(--rotateDeg_v));
+
+    background-color: green;
+    animation-delay: 0.7s;
+    animation: fireworks_head 2s ease-in, fadeSaturation 2s ease-in;
+    opacity: 0;
+    border-radius: 50%;
+}
+
+.firework>.head:not(.flash) {
+    animation-delay: 0.7s;
+    animation: fireworks_head_opacity_1 2s ease-in, fireworks_head 2s ease-in, fadeSaturation 2s step-start !important;
+}
+
+.firework>.head.flash {
+    animation-delay: 0.7s;
+    animation: fireworks_head_opacity_3 2s ease-in, fireworks_head 2s ease-in, fadeSaturation 2s step-start !important;
+}
+
+@keyframes fireworks {
+    0% {
+        transform: translateY(100vh);
+    }
+
+    25% {
+        transform: translateY(var(--height)) translateX(var(--x-pos));
+    }
+
+    100% {
+        transform: translateY(var(--height)) translateX(var(--x-pos));
+    }
+}
+
+@keyframes fireworks_body {
+    0% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    31% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Apply different animation delays to each firework element */
+
+@keyframes fireworks_head {
+    0% {
+        transform: none;
+    }
+
+
+
+    100% {
+        transform: translateY(var(--translateY_v)) translateX(var(--translateX_v))
+    }
+
+}
+
+@keyframes fireworks_head_opacity_2 {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fireworks_head_opacity_1 {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+
+}
+
+@keyframes fireworks_head_opacity_3 {
+    0% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeSaturation {
+    0% {
+        filter: saturate(0%);
+    }
+
+    29% {
+        filter: saturate(0%);
+    }
+
+    50% {
+        filter: saturate(100%);
+    }
+
+    100% {
+        filter: saturate(100%);
+    }
+}
+
+.ifo_hill,
+.ifo_hill div {
+    z-index: 6 !important;
+}
+
+/* Add more nth-child rules for additional firework elements */
+img.background {
+    position: absolute;
+    width: 100vw;
+    overflow: hidden;
+    width: 100vw;
+    object-fit: cover;
+}
+
+.back {
+    z-index: 0;
+}
+
+.hill {
+    z-index: 5;
+
+}
+
+.midd {
+    z-index: 5;
+    ;
+}
+
+.for {
+    z-index: 15;
+}
+@font-face {
+font-family: 'YourNewYearFont'; /* Replace 'YourNewYearFont' with the desired font name */
+src: url('/Roboto.ttf') format('truetype'); /* Adjust the path based on your project structure */
+font-weight: normal;
+font-style: normal;
+}
+#countdown{
+    color: white;
+    position: fixed;
+    z-index: 1000;
+    text-align: center;
+font-size: 24px;
+width: 100vw;
+font-family:'YourNewYearFont';
+}

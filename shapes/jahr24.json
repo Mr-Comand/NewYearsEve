@@ -1,0 +1,443 @@
+[
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 0
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 0
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 0
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 0
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 0
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 0
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 0
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 0
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 0
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 0
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 1
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 1
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 1
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 1
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 1
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 1
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 2
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 2
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 2
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 2
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 2
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 2
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 3
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 3
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 3
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 3
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 15,
+      "y": 3
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 3
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 4
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 4
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 4
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 4
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 4
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 4
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 16,
+      "y": 4
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 17,
+      "y": 4
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 4
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 5
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 5
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 5
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 5
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 5
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 6
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 6
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 6
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 6
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 6
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 7
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 5,
+      "y": 7
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 8,
+      "y": 7
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 7
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 7
+    },
+    "color": "color4"
+  },
+  {
+    "coordinates": {
+      "x": 0,
+      "y": 8
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 1,
+      "y": 8
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 2,
+      "y": 8
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 3,
+      "y": 8
+    },
+    "color": "color1"
+  },
+  {
+    "coordinates": {
+      "x": 6,
+      "y": 8
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 7,
+      "y": 8
+    },
+    "color": "color2"
+  },
+  {
+    "coordinates": {
+      "x": 10,
+      "y": 8
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 11,
+      "y": 8
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 12,
+      "y": 8
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 13,
+      "y": 8
+    },
+    "color": "color3"
+  },
+  {
+    "coordinates": {
+      "x": 18,
+      "y": 8
+    },
+    "color": "color4"
+  }
+]
