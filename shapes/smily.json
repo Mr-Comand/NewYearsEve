@@ -1,1 +1,289 @@
-[]
+[
+    {
+      "coordinates": {
+        "x": 5,
+        "y": 0
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 6,
+        "y": 0
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 7,
+        "y": 0
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 3,
+        "y": 1
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 4,
+        "y": 1
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 8,
+        "y": 1
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 9,
+        "y": 1
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 2,
+        "y": 2
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 10,
+        "y": 2
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 1,
+        "y": 3
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 11,
+        "y": 3
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 1,
+        "y": 4
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 4,
+        "y": 4
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 8,
+        "y": 4
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 11,
+        "y": 4
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 0,
+        "y": 5
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 12,
+        "y": 5
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 0,
+        "y": 6
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 12,
+        "y": 6
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 0,
+        "y": 7
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 3,
+        "y": 7
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 9,
+        "y": 7
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 12,
+        "y": 7
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 1,
+        "y": 8
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 4,
+        "y": 8
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 8,
+        "y": 8
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 11,
+        "y": 8
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 1,
+        "y": 9
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 5,
+        "y": 9
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 6,
+        "y": 9
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 7,
+        "y": 9
+      },
+      "color": "red"
+    },
+    {
+      "coordinates": {
+        "x": 11,
+        "y": 9
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 2,
+        "y": 10
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 10,
+        "y": 10
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 3,
+        "y": 11
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 4,
+        "y": 11
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 8,
+        "y": 11
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 9,
+        "y": 11
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 5,
+        "y": 12
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 6,
+        "y": 12
+      },
+      "color": "yellow"
+    },
+    {
+      "coordinates": {
+        "x": 7,
+        "y": 12
+      },
+      "color": "yellow"
+    }
+  ]
