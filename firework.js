@@ -28,19 +28,29 @@ async function fetchShapes(endpoint) {
     return data;
 }
 
-async function createFireworkShapes(size, scale,firework,  shapeType, translationRange) {
-    let shapes;
+async function createFireworkShapes(size, scale, firework, shapeType, translationRange) {
+    let shape;
     try {
-        shapes = await fetchShapes(`/shapes/${shapeType}.json`);
+        shape = await fetchShapes(`/shapes/${shapeType}.json`);
     } catch (error) {
         console.error('Failed to fetch shapes:', error);
         return;
     }
 
     const rotateDeg = getRandomInt(-45, 45);
-    for (const shape of shapes) {
-        const { x, y } = shape.coordinates;
-        const color = shape.color;
+    randomColorMap = {};
+    for (const point of shape) {
+
+        const { x, y } = point.coordinates;
+
+        let color = point.color;
+        if (point.color.startsWith("random")) {
+            if (!randomColorMap[point.color]) {
+                randomColorMap[point.color] = generateRandomIntenseColor();
+            }
+            color = randomColorMap[point.color];
+        }
+
 
 
         let translateY = (y - 6.5) * size * scale / 2 + getRandomInt(-translationRange, translationRange) / 30;
