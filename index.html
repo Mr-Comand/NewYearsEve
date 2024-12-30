@@ -5,19 +5,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>New Year's Eve</title>
+    <style>
+        .background-container.hidden {
+            display: none;
+        }
+        .config-icon, .github-logo {
+            color: rgba(128,128,128,0.8);
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 24px;
+        }
+        .config-icon {
+            right: 50px;
+        }
+        .config-menu {
+            display: none;
+            position: fixed;
+            bottom: 50px;
+            right: 10px;
+            background: rgba(128,128,128,0.8);
+            border: 5px solid rgba(100, 100, 100, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1000;
+        }
+        .config-menu label, .config-menu div {
+            margin-bottom: 10px;
+        }
+        .config-menu button {
+            margin: 2px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .config-menu button:hover {
+            background-color: #0056b3;
+        }
+        #countdown {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 50px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 
 <body>
     <div id="countdown"></div>
 
-    <script src="countdown.js">
-    </script>
-    <img src="Background.png" height="100%" class="back background">
-    <img src="Hill.png" height="100%" class="hill background">
-    <img src="Middleground.png" height="100%" class="midd background">
-    <img src="Foreground.png" height="100%" class="for background">
+    <script src="countdown.js"></script>
+
+    <div id="background-container" class="background-container">
+        <img src="Background.png" height="100%" class="back background">
+        <img src="Hill.png" height="100%" class="hill background">
+        <img src="Middleground.png" height="100%" class="midd background">
+        <img src="Foreground.png" height="100%" class="for background">
+    </div>
+
+    <i class="fas fa-cog config-icon" id="config-icon" title="Config"></i>
+    <i class="fab fa-github github-logo" id="github-logo" title="GitHub"
+        onclick="window.open('https://github.com/Mr-Comand/NewYearsEve/', '_blank')"></i>
+
+    <div class="config-menu" id="config-menu">
+        <label>
+            <input type="checkbox" id="toggle-bg" onchange="toggleBackground()"> Hide Background Images
+        </label>
+        
+        <div>
+            <button onclick="moveCountdown('up')">Up</button>
+            <button onclick="moveCountdown('down')">Down</button>
+            <button onclick="moveCountdown('left')">Left</button>
+            <button onclick="moveCountdown('right')">Right</button>
+            <button onclick="moveCountdown('increase')">Increase Size</button>
+            <button onclick="moveCountdown('decrease')">Decrease Size</button>
+            <br>
+            
+            <button onclick="moveCountdown('rotate-left')">Rotate Left</button>
+            <button onclick="moveCountdown('rotate-right')">Rotate Right</button>
+            <br>
+            <label>
+                Movement Step Size: <input type="number" id="step-size" value="5" min="1">
+            </label>
+        </div>
+    </div>
 
     <script src="firework.js"></script>
+    <script src="config.js"></script>
 </body>
 
 </html>

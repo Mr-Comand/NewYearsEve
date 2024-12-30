@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+
+        }
+
+        .firework {
+            --scale: 1;
+            position: absolute;
+            width: calc(15px*var(--scale));
+            height: calc(15px*var(--scale));
+            border-radius: 50%;
+            animation: fireworks 2s;
+
+
+        }
+
+        .firework>.body {
+            z-index: 11;
+            animation: fireworks_body 2s;
+
+            height: 100%;
+            width: 100%;
+            font-size: 30px;
+
+            transform: scale(var(--scale)) rotate(calc(var(--angel) - 0deg)) translate(-50%, 100%);
+
+        }
+
+        .firework>.head {
+            z-index: 10;
+            position: absolute;
+            width: calc(8px*var(--scale));
+            height: calc(8px*var(--scale));
+            transform: translateY(var(--translateY_v)), translateX(var(--translateX_v)), rotate(var(--rotateDeg_v));
+
+            background-color: green;
+            animation-delay: 0.7s;
+            animation: fireworks_head 2s ease-in, fadeSaturation 2s ease-in;
+            opacity: 0;
+            border-radius: 50%;
+        }
+
+        .firework>.head:not(.flash) {
+            animation-delay: 0.7s;
+            animation: fireworks_head_opacity_1 2s ease-in, fireworks_head 2s ease-in, fadeSaturation 2s step-start !important;
+        }
+
+        .firework>.head.flash {
+            animation-delay: 0.7s;
+            animation: fireworks_head_opacity_3 2s ease-in, fireworks_head 2s ease-in, fadeSaturation 2s step-start !important;
+        }
+
+        @keyframes fireworks {
+            0% {
+                transform: translateY(100vh);
+            }
+
+            25% {
+                transform: translateY(var(--height)) translateX(var(--x-pos));
+            }
+
+            100% {
+                transform: translateY(var(--height)) translateX(var(--x-pos));
+            }
+        }
+
+        @keyframes fireworks_body {
+            0% {
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            31% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Apply different animation delays to each firework element */
+
+        @keyframes fireworks_head {
+            0% {
+                transform: none;
+            }
+
+
+
+            100% {
+                transform: translateY(var(--translateY_v)) translateX(var(--translateX_v))
+            }
+
+        }
+
+        @keyframes fireworks_head_opacity_2 {
+            0% {
+                opacity: 0;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fireworks_head_opacity_1 {
+            0% {
+                opacity: 0;
+            }
+
+            1% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+
+
+        }
+
+        @keyframes fireworks_head_opacity_3 {
+            0% {
+                opacity: 0;
+            }
+
+            80% {
+                opacity: 0;
+            }
+
+            85% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 0;
+            }
+
+            95% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeSaturation {
+            0% {
+                filter: saturate(0%);
+            }
+
+            29% {
+                filter: saturate(0%);
+            }
+
+            50% {
+                filter: saturate(100%);
+            }
+
+            100% {
+                filter: saturate(100%);
+            }
+        }
+
+        .ifo_hill,
+        .ifo_hill div {
+            z-index: 6 !important;
+        }
+
+        /* Add more nth-child rules for additional firework elements */
+        img.background {
+            position: absolute;
+            width: 100vw;
+            overflow: hidden;
+            width: 100vw;
+            object-fit: cover;
+        }
+
+        .back {
+            z-index: 0;
+        }
+
+        .hill {
+            z-index: 5;
+
+        }
+
+        .midd {
+            z-index: 5;
+            ;
+        }
+
+        .for {
+            z-index: 15;
+        }
+        @font-face {
+      font-family: 'YourNewYearFont'; /* Replace 'YourNewYearFont' with the desired font name */
+      src: url('/Roboto.ttf') format('truetype'); /* Adjust the path based on your project structure */
+      font-weight: normal;
+      font-style: normal;
+    }
+        #countdown{
+            color: white;
+            position: fixed;
+            z-index: 1000;
+            text-align: center;
+      font-size: 24px;
+      width: 100vw;
+      font-family:'YourNewYearFont';
+        }
+    </style>
+</head>
+
+<body>
+    <div id="countdown"></div>
+
+    <script>
+    function updateCountdown() {
+      // Set the date for the next New Year
+      const nextNewYear = new Date(new Date().getFullYear() + 1, 0, 1);
+    
+      // Calculate the time remaining
+      const now = new Date();
+      const timeRemaining = nextNewYear - now;
+    
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+    
+      // Build the countdown string
+      let countdownString = `<p>`;
+      if (days > 0) countdownString += `${days} Tag ${days !== 1 ? 'e' : ''} `;
+      if (hours > 0) countdownString += `${hours} Stunde${hours !== 1 ? 'n' : ''} `;
+      if (minutes > 0) countdownString += `${minutes} Minute${minutes !== 1 ? 'n' : ''} `;
+      countdownString += `${seconds} Sekunde${seconds !== 1 ? 'n' : ''}</p>`;
+    
+      // Update the content of the div with the countdown
+      document.getElementById('countdown').innerHTML = countdownString;
+    }
+    
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+    
+    // Initial call to set the initial countdown values
+    updateCountdown();
+    </script>
+    <img src="Background.png" height="100%" class="back background">
+    <img src="Hill.png" height="100%" class="hill background">
+    <img src="Middleground.png" height="100%" class="midd background">
+    <img src="Foreground.png" height="100%" class="for background">
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        const redirectUri = 'https://tmf.ddns.net/Weihnachten/Silvester/';
+        const name_a = 'Silvester';
+    </script>
+    <script src="https://tmf.ddns.net/Weihnachten/spotify.js"></script>
+    <script>
+        function generateRandomNormal(mean, standardDeviation) {
+            let u1 = Math.random();
+            let u2 = Math.random();
+
+            let z0 = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+
+            // Adjust for mean and standard deviation
+            return z0 * standardDeviation + mean;
+        }
+        function getRandomInt(min, max) {
+            var a = Math.floor(Math.random() * (max - min + 1)) + min;
+            return a;
+        }
+
+        // Function to create a new firework at a random position
+        function createFirework(sequenz) {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            switch (sequenz) {
+                case 0:
+                    firework.style.left = Math.random() * window.innerWidth + 'px';
+                    break;
+                case 1:
+                    firework.style.left = 0.20 * window.innerWidth + 'px';
+                    break;
+                case 2:
+                    firework.style.left = 0.50 * window.innerWidth + 'px';
+                    break;
+                case 3:
+                    firework.style.left = 0.80 * window.innerWidth + 'px';
+                    break;
+
+            }
+            var body = document.createElement('div');
+            body.classList.add("body");
+            var size = getRandomInt(1, 50);
+            firework.appendChild(body);
+            // Remove the firework element after the animation ends
+
+
+
+            var scale = getRandomInt(1, 25) / 25;
+
+            firework.style.setProperty("--scale", scale);
+
+            var height = getRandomInt(10, 80);
+            if (sequenz!==0){
+                height = getRandomInt(15, 30);
+                getRandomInt(20, 25) / 20;
+                size=getRandomInt(30, 35);
+            }
+            if (height > 50) {
+                scale = scale * (1 / (height / 50));
+            } else {
+                scale = scale / (height / 50);
+            }
+
+            body.innerHTML = "<img src=\"https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/fd/Firework_Rocket_JE2_BE2.png\" height=100%>"
+
+            if (scale >= 1) {
+                firework.classList.add("ifo_hill");
+            }
+            firework.style.setProperty("--height", height + "vh");
+            var angel = generateRandomNormal(0, 10);
+            var angleInRadians = (angel * Math.PI) / 180;// Convert angle to radians
+            var xpos = (Math.tan((angel * Math.PI) / 180) * (100 - height));
+
+            firework.style.setProperty("--x-pos", xpos + "vh");
+            firework.style.setProperty("--angel", angel + "deg");
+
+            const randomColor = generateRandomIntenseColor();
+            var type;
+            if (sequenz == 0) {
+                type = getRandomInt(1, 9);
+            } else {
+                type = -1 * sequenz
+            }
+            const flash = getRandomInt(0, 10) > 9;
+            generateflainr(type, firework, size, height, randomColor, scale, flash);
+            if (type <= 5&&type>=0) {
+                for (let i = 0; i < getRandomInt(0, 3); i++) {
+                    generateflainr(type, firework, size + getRandomInt(20, 50), height, generateRandomIntenseColor(), scale, flash);
+                }
+            }
+            firework.addEventListener('animationend', () => {
+                //document.body.removeChild(firework);
+                firework.remove();
+            });
+            document.body.appendChild(firework);
+            setTimeout(firework.remove, 2500)
+        }
+
+        // Create a new firework every 2 seconds
+        function sequenz_call() {
+            createFirework(1)
+            setTimeout(function () { createFirework(2); }, 500)
+            setTimeout(function () { createFirework(3); }, 1500)
+
+        }
+        setInterval(function () {createFirework(0);}, 250);
+        setInterval(function () { sequenz_call(); }, 20000);
+        sequenz_call();
+        createFirework()
+
+
+        function generateflainr(type, firework, size, height, randomColor, scale, flash) {
+            const creeper = [[{ x: 0, y: 0 }, 'green'], [{ x: 1, y: 0 }, 'green'], [{ x: 2, y: 0 }, 'green'], [{ x: 3, y: 0 }, 'green'], [{ x: 6, y: 0 }, 'green'], [{ x: 7, y: 0 }, 'green'], [{ x: 8, y: 0 }, 'green'], [{ x: 9, y: 0 }, 'green'], [{ x: 0, y: 1 }, 'green'], [{ x: 3, y: 1 }, 'green'], [{ x: 6, y: 1 }, 'green'], [{ x: 9, y: 1 }, 'green'], [{ x: 0, y: 2 }, 'green'], [{ x: 3, y: 2 }, 'green'], [{ x: 6, y: 2 }, 'green'], [{ x: 9, y: 2 }, 'green'], [{ x: 0, y: 3 }, 'green'], [{ x: 1, y: 3 }, 'green'], [{ x: 2, y: 3 }, 'green'], [{ x: 3, y: 3 }, 'green'], [{ x: 4, y: 3 }, 'green'], [{ x: 5, y: 3 }, 'green'], [{ x: 6, y: 3 }, 'green'], [{ x: 7, y: 3 }, 'green'], [{ x: 8, y: 3 }, 'green'], [{ x: 9, y: 3 }, 'green'], [{ x: 3, y: 4 }, 'green'], [{ x: 6, y: 4 }, 'green'], [{ x: 1, y: 5 }, 'green'], [{ x: 2, y: 5 }, 'green'], [{ x: 3, y: 5 }, 'green'], [{ x: 6, y: 5 }, 'green'], [{ x: 7, y: 5 }, 'green'], [{ x: 8, y: 5 }, 'green'], [{ x: 1, y: 6 }, 'green'], [{ x: 8, y: 6 }, 'green'], [{ x: 1, y: 7 }, 'green'], [{ x: 8, y: 7 }, 'green'], [{ x: 1, y: 8 }, 'green'], [{ x: 3, y: 8 }, 'green'], [{ x: 4, y: 8 }, 'green'], [{ x: 5, y: 8 }, 'green'], [{ x: 6, y: 8 }, 'green'], [{ x: 8, y: 8 }, 'green'], [{ x: 1, y: 9 }, 'green'], [{ x: 3, y: 9 }, 'green'], [{ x: 6, y: 9 }, 'green'], [{ x: 8, y: 9 }, 'green'], [{ x: 1, y: 10 }, 'green'], [{ x: 2, y: 10 }, 'green'], [{ x: 3, y: 10 }, 'green'], [{ x: 6, y: 10 }, 'green'], [{ x: 7, y: 10 }, 'green'], [{ x: 8, y: 10 }, 'green'],];
+
+            //type = 9;
+            switch (type) {
+                case -1:
+                    color1 = generateRandomIntenseColor();
+
+                    const frohes = [
+                    [{x:1, y:1},color1],[{x:2, y:1},color1],[{x:3, y:1},color1],[{x:12, y:1},color1],[{x:1, y:2},color1],[{x:9, y:2},color1],[{x:12, y:2},color1],[{x:17, y:2},color1],[{x:22, y:2},color1],[{x:23, y:2},color1],[{x:1, y:3},color1],[{x:2, y:3},color1],[{x:8, y:3},color1],[{x:10, y:3},color1],[{x:12, y:3},color1],[{x:13, y:3},color1],[{x:16, y:3},color1],[{x:18, y:3},color1],[{x:21, y:3},color1],[{x:1, y:4},color1],[{x:5, y:4},color1],[{x:6, y:4},color1],[{x:8, y:4},color1],[{x:10, y:4},color1],[{x:12, y:4},color1],[{x:14, y:4},color1],[{x:16, y:4},color1],[{x:17, y:4},color1],[{x:18, y:4},color1],[{x:22, y:4},color1],[{x:23, y:4},color1],[{x:1, y:5},color1],[{x:5, y:5},color1],[{x:8, y:5},color1],[{x:10, y:5},color1],[{x:12, y:5},color1],[{x:14, y:5},color1],[{x:16, y:5},color1],[{x:23, y:5},color1],[{x:1, y:6},color1],[{x:5, y:6},color1],[{x:9, y:6},color1],[{x:12, y:6},color1],[{x:14, y:6},color1],[{x:17, y:6},color1],[{x:18, y:6},color1],[{x:21, y:6},color1],[{x:22, y:6},color1],
+
+                    ];
+                    var rotateDeg = getRandomInt(-45, 45);
+                    for (const [coordinates, color] of frohes) {
+                        const [x, y] = [coordinates.x, coordinates.y];
+
+                        var translateY = (y - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        var translateX = (x - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        translateX, translateY = rotate_2d(translateX, translateY, (rotateDeg * Math.PI) / 180)
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", color);
+
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                        firework.style.setProperty("--scale", scale / 2);
+                    }
+                    break;
+
+                case -2:
+                    color1 = generateRandomIntenseColor();
+
+                    const neues = [
+                    [{x:5, y:0},color1],[{x:13, y:0},color1],[{x:17, y:0},color1],[{x:18, y:0},color1],[{x:0, y:1},color1],[{x:1, y:1},color1],[{x:4, y:1},color1],[{x:6, y:1},color1],[{x:8, y:1},color1],[{x:10, y:1},color1],[{x:12, y:1},color1],[{x:14, y:1},color1],[{x:16, y:1},color1],[{x:0, y:2},color1],[{x:2, y:2},color1],[{x:4, y:2},color1],[{x:5, y:2},color1],[{x:6, y:2},color1],[{x:8, y:2},color1],[{x:10, y:2},color1],[{x:12, y:2},color1],[{x:13, y:2},color1],[{x:14, y:2},color1],[{x:17, y:2},color1],[{x:18, y:2},color1],[{x:0, y:3},color1],[{x:2, y:3},color1],[{x:4, y:3},color1],[{x:8, y:3},color1],[{x:10, y:3},color1],[{x:12, y:3},color1],[{x:18, y:3},color1],[{x:0, y:4},color1],[{x:2, y:4},color1],[{x:5, y:4},color1],[{x:6, y:4},color1],[{x:8, y:4},color1],[{x:9, y:4},color1],[{x:10, y:4},color1],[{x:13, y:4},color1],[{x:14, y:4},color1],[{x:16, y:4},color1],[{x:17, y:4},color1],
+                    ];
+                    var rotateDeg = getRandomInt(-45, 45);
+                    for (const [coordinates, color] of neues) {
+                        const [x, y] = [coordinates.x, coordinates.y];
+
+                        var translateY = (y - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        var translateX = (x - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        translateX, translateY = rotate_2d(translateX, translateY, (rotateDeg * Math.PI) / 180)
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", color);
+
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                        firework.style.setProperty("--scale", scale / 2);
+                    }
+                    break;
+
+                case -3:
+                    color1 = generateRandomIntenseColor();
+
+                    const jahr_ = [
+                    [{x:0, y:0},color1],[{x:1, y:0},color1],[{x:8, y:0},color1],[{x:2, y:1},color1],[{x:8, y:1},color1],[{x:2, y:2},color1],[{x:5, y:2},color1],[{x:6, y:2},color1],[{x:8, y:2},color1],[{x:2, y:3},color1],[{x:5, y:3},color1],[{x:6, y:3},color1],[{x:8, y:3},color1],[{x:9, y:3},color1],[{x:10, y:3},color1],[{x:12, y:3},color1],[{x:13, y:3},color1],[{x:0, y:4},color1],[{x:2, y:4},color1],[{x:4, y:4},color1],[{x:6, y:4},color1],[{x:8, y:4},color1],[{x:10, y:4},color1],[{x:12, y:4},color1],[{x:1, y:5},color1],[{x:5, y:5},color1],[{x:6, y:5},color1],
+
+
+                    ];
+                    var rotateDeg = getRandomInt(-45, 45);
+                    for (const [coordinates, color] of jahr_) {
+                        const [x, y] = [coordinates.x, coordinates.y];
+
+                        var translateY = (y - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        var translateX = (x - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        translateX, translateY = rotate_2d(translateX, translateY, (rotateDeg * Math.PI) / 180)
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", color);
+
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                        firework.style.setProperty("--scale", scale / 2);
+                    }
+                    break;
+
+                case 1:
+
+                    var rotateDeg = Math.random() * 360;
+                    for (let i = 0; i < getRandomInt(10, 30); i++) {
+                        const x = getRandomInt(-10, 10);
+                        const y = getRandomInt(-10, 10);
+                        var translateY = y * size * scale / 2;
+                        var translateX = x * size * scale / 2;
+
+                        var head = document.createElement('div')
+
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", randomColor);
+                        if ((getRandomInt(0, 5) == 5) || flash) head.classList.add("flash");
+                        head.classList.add("head")
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 2:
+                    var rotateDeg = Math.random() * 360;
+                    for (let i = 0; i < getRandomInt(10, 30); i++) {
+                        const x = getRandomInt(0, 10);
+                        const y = getRandomInt(-10, 10);
+                        var translateY = y * size * scale / 2;
+                        var translateX = x * size * scale / 2;
+
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", randomColor);
+                        if ((getRandomInt(0, 5) == 5) || flash) head.classList.add("flash");
+                        head.classList.add("head")
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 3:
+                    var rotateDeg = Math.random() * 360;
+                    for (let i = 0; i < getRandomInt(10, 30); i++) {
+                        const x = getRandomInt(-10, 10);
+                        const y = getRandomInt(0, 10);
+                        var translateY = y * size * scale / 2;
+                        var translateX = x * size * scale / 2;
+
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", randomColor);
+                        if ((getRandomInt(0, 5) == 5) || flash) head.classList.add("flash");
+                        head.classList.add("head")
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 4:
+                    var rotateDeg = Math.random() * 360;
+                    for (let i = 0; i < getRandomInt(10, 30); i++) {
+                        const x = getRandomInt(-10, 0);
+                        const y = getRandomInt(-10, 10);
+                        var translateY = y * size * scale / 2;
+                        var translateX = x * size * scale / 2;
+
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", randomColor);
+                        if ((getRandomInt(0, 5) == 5) || flash) head.classList.add("flash");
+                        head.classList.add("head")
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 5:
+                    var rotateDeg = Math.random() * 360;
+                    for (let i = 0; i < getRandomInt(10, 30); i++) {
+                        const x = getRandomInt(-10, 10);
+                        const y = getRandomInt(-10, 0);
+                        var translateY = y * size * scale / 2 + getRandomInt(-100, 100) / 20;
+                        var translateX = x * size * scale / 2 + getRandomInt(-100, 100) / 20;
+
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", randomColor);
+                        if ((getRandomInt(0, 5) == 5) || flash) head.classList.add("flash");
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 6:
+
+                    var rotateDeg = getRandomInt(-10, 10);
+                    for (const [coordinates, color] of creeper) {
+                        const [x, y] = [coordinates.x, coordinates.y];
+
+                        var translateY = (y - 7.5) * size * scale / 2 + getRandomInt(-100, 100) / 20;
+                        var translateX = (x - 7.5) * size * scale / 2 + getRandomInt(-100, 100) / 20;
+                        translateX, translateY = rotate_2d(translateX, translateY, (rotateDeg * Math.PI) / 180)
+
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", color);
+
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 7:
+                    color1 = generateRandomIntenseColor();
+                    color2 = generateRandomIntenseColor();
+                    color3 = generateRandomIntenseColor();
+                    color4 = generateRandomIntenseColor();
+                    const jahr = [
+                        [{ x: 0, y: 0 }, color1], [{ x: 1, y: 0 }, color1], [{ x: 2, y: 0 }, color1], [{ x: 6, y: 0 }, color2], [{ x: 7, y: 0 }, color2], [{ x: 10, y: 0 }, color3], [{ x: 11, y: 0 }, color3], [{ x: 12, y: 0 }, color3], [{ x: 15, y: 0 }, color4], [{ x: 18, y: 0 }, color4], [{ x: 3, y: 1 }, color1], [{ x: 5, y: 1 }, color2], [{ x: 8, y: 1 }, color2], [{ x: 13, y: 1 }, color3], [{ x: 15, y: 1 }, color4], [{ x: 18, y: 1 }, color4], [{ x: 3, y: 2 }, color1], [{ x: 5, y: 2 }, color2], [{ x: 8, y: 2 }, color2], [{ x: 13, y: 2 }, color3], [{ x: 15, y: 2 }, color4], [{ x: 18, y: 2 }, color4], [{ x: 3, y: 3 }, color1], [{ x: 5, y: 3 }, color2], [{ x: 8, y: 3 }, color2], [{ x: 13, y: 3 }, color3], [{ x: 15, y: 3 }, color4], [{ x: 18, y: 3 }, color4], [{ x: 1, y: 4 }, color1], [{ x: 2, y: 4 }, color1], [{ x: 5, y: 4 }, color2], [{ x: 8, y: 4 }, color2], [{ x: 11, y: 4 }, color3], [{ x: 12, y: 4 }, color3], [{ x: 16, y: 4 }, color4], [{ x: 17, y: 4 }, color4], [{ x: 18, y: 4 }, color4], [{ x: 0, y: 5 }, color1], [{ x: 5, y: 5 }, color2], [{ x: 8, y: 5 }, color2], [{ x: 10, y: 5 }, color3], [{ x: 18, y: 5 }, color4], [{ x: 0, y: 6 }, color1], [{ x: 5, y: 6 }, color2], [{ x: 8, y: 6 }, color2], [{ x: 10, y: 6 }, color3], [{ x: 18, y: 6 }, color4], [{ x: 0, y: 7 }, color1], [{ x: 5, y: 7 }, color2], [{ x: 8, y: 7 }, color2], [{ x: 10, y: 7 }, color3], [{ x: 18, y: 7 }, color4], [{ x: 0, y: 8 }, color1], [{ x: 1, y: 8 }, color1], [{ x: 2, y: 8 }, color1], [{ x: 3, y: 8 }, color1], [{ x: 6, y: 8 }, color2], [{ x: 7, y: 8 }, color2], [{ x: 10, y: 8 }, color3], [{ x: 11, y: 8 }, color3], [{ x: 12, y: 8 }, color3], [{ x: 13, y: 8 }, color3], [{ x: 18, y: 8 }, color4],
+                    ];
+                    var rotateDeg = getRandomInt(-90, 90);
+                    for (const [coordinates, color] of jahr) {
+                        const [x, y] = [coordinates.x, coordinates.y];
+
+                        var translateY = (y - 5) * size * scale / 2 + getRandomInt(-100, 100) / 20;
+                        var translateX = (x - 9) * size * scale / 2 + getRandomInt(-100, 100) / 20;
+                        translateX, translateY = rotate_2d(translateX, translateY, (rotateDeg * Math.PI) / 180)
+
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "deg");
+                        head.style.setProperty("background-color", color);
+
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 8:
+                    color1 = generateRandomIntenseColor();
+                    color2 = generateRandomIntenseColor();
+                    color3 = generateRandomIntenseColor();
+                    color4 = generateRandomIntenseColor();
+                    const smily = [
+                        [{ x: 5, y: 0 }, 'yellow'], [{ x: 6, y: 0 }, 'yellow'], [{ x: 7, y: 0 }, 'yellow'], [{ x: 3, y: 1 }, 'yellow'], [{ x: 4, y: 1 }, 'yellow'], [{ x: 8, y: 1 }, 'yellow'], [{ x: 9, y: 1 }, 'yellow'], [{ x: 2, y: 2 }, 'yellow'], [{ x: 10, y: 2 }, 'yellow'], [{ x: 1, y: 3 }, 'yellow'], [{ x: 11, y: 3 }, 'yellow'], [{ x: 1, y: 4 }, 'yellow'], [{ x: 4, y: 4 }, 'red'], [{ x: 8, y: 4 }, 'red'], [{ x: 11, y: 4 }, 'yellow'], [{ x: 0, y: 5 }, 'yellow'], [{ x: 12, y: 5 }, 'yellow'], [{ x: 0, y: 6 }, 'yellow'], [{ x: 12, y: 6 }, 'yellow'], [{ x: 0, y: 7 }, 'yellow'], [{ x: 3, y: 7 }, 'red'], [{ x: 9, y: 7 }, 'red'], [{ x: 12, y: 7 }, 'yellow'], [{ x: 1, y: 8 }, 'yellow'], [{ x: 4, y: 8 }, 'red'], [{ x: 8, y: 8 }, 'red'], [{ x: 11, y: 8 }, 'yellow'], [{ x: 1, y: 9 }, 'yellow'], [{ x: 5, y: 9 }, 'red'], [{ x: 6, y: 9 }, 'red'], [{ x: 7, y: 9 }, 'red'], [{ x: 11, y: 9 }, 'yellow'], [{ x: 2, y: 10 }, 'yellow'], [{ x: 10, y: 10 }, 'yellow'], [{ x: 3, y: 11 }, 'yellow'], [{ x: 4, y: 11 }, 'yellow'], [{ x: 8, y: 11 }, 'yellow'], [{ x: 9, y: 11 }, 'yellow'], [{ x: 5, y: 12 }, 'yellow'], [{ x: 6, y: 12 }, 'yellow'], [{ x: 7, y: 12 }, 'yellow'],
+                    ];
+                    var rotateDeg = getRandomInt(-180, 180);
+                    for (const [coordinates, color] of smily) {
+                        const [x, y] = [coordinates.x, coordinates.y];
+
+                        var translateY = (y - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 20;
+                        var translateX = (x - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 20;
+                        translateX, translateY = rotate_2d(translateX, translateY, (rotateDeg * Math.PI) / 180)
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", color);
+
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                    }
+                    break;
+                case 9:
+                    color1 = generateRandomIntenseColor();
+
+                    const sekt = [
+                        [{ x: 0.5, y: 0 }, color1], [{ x: 3.5, y: 0 }, color1], [{ x: 0, y: 1 }, color1], [{ x: 4, y: 1 }, color1], [{ x: 0, y: 2 }, color1], [{ x: 4, y: 2 }, color1], [{ x: 1, y: 3 }, color1], [{ x: 3, y: 3 }, color1], [{ x: 2, y: 4 }, color1], [{ x: 2, y: 5 }, color1], [{ x: 2, y: 6 }, color1], [{ x: 2, y: 7 }, color1], [{ x: 2, y: 8 }, color1], [{ x: 1, y: 9 }, color1], [{ x: 2, y: 9 }, color1], [{ x: 3, y: 9 }, color1],
+                    ];
+                    var rotateDeg = getRandomInt(-45, 45);
+                    for (const [coordinates, color] of sekt) {
+                        const [x, y] = [coordinates.x, coordinates.y];
+
+                        var translateY = (y - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        var translateX = (x - 6.5) * size * scale / 2 + getRandomInt(-100, 100) / 30;
+                        translateX, translateY = rotate_2d(translateX, translateY, (rotateDeg * Math.PI) / 180)
+                        var head = document.createElement('div')
+                        head.style.setProperty("--translateY_v", translateY + "px");
+                        head.style.setProperty("--translateX_v", translateX + "px");
+                        head.style.setProperty("--rotateDeg_v", rotateDeg + "px");
+                        head.style.setProperty("background-color", color);
+
+                        head.classList.add("head");
+                        firework.appendChild(head);
+                        firework.style.setProperty("--scale", scale / 2);
+                    }
+                    break;
+
+            }
+
+            //if(getRandomInt(0,1)){
+
+            //}
+        }
+
+
+        function generateRandomIntenseColor() {
+            const hue = getRandomInt(0, 360); // Random hue value between 0 and 360
+            const saturation = 100; // Maximum saturation for intensity
+            const lightness = getRandomInt(50, 100); // Random lightness between 50 and 100 for intensity
+
+            return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        }
+        green = "green"
+        function rotate_2d(x, y, angel) {
+            x_o = (x * Math.cos(angel)) - (y * Math.sin(angel));
+            y_o = (x * Math.sin(angel)) + (y * Math.cos(angel));
+            return x_o, y_o;
+        };
+
+    </script>
+</body>
+
+</html>
