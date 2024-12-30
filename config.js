@@ -96,6 +96,22 @@ function applyCountdownConfig() {
     countdown.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${rotate}deg)`;
 }
 
+// Apply custom thanks text
+function applyThanksText() {
+    const thanksInput = document.getElementById('thanks-input').value;
+    const thanksText = document.getElementById('thanks-text');
+    thanksText.innerText = thanksInput;
+    setUrlParameter('thanksText', thanksInput);
+}
+
+// Load custom thanks text from URL
+function loadThanksText() {
+    const thanksText = getUrlParameter('thanksText') || '';
+    document.getElementById('thanks-input').value = thanksText;
+    document.getElementById('thanks-text').innerText = thanksText;
+}
+
 // Call the functions to set the checkbox state and apply the initial configuration
 setCheckboxState();
 applyCountdownConfig();
+loadThanksText();

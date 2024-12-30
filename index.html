@@ -56,14 +56,31 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: 50px;
+            font-size: 24px;
             z-index: 1000;
+        }
+        #thanks-text {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            z-index: 1000;
+        }
+        #thanks-input {
+            resize: both;
+            overflow: auto;
+            width: 100%;
+            height: 50px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 
 <body>
     <div id="countdown"></div>
+    <div id="thanks-text"></div>
 
     <div id="background-container" class="background-container">
         <img src="Background.png" height="100%" class="back background">
@@ -80,7 +97,7 @@
         <label>
             <input type="checkbox" id="toggle-bg" onchange="toggleBackground()"> Hide Background Images
         </label>
-        
+
         <div>
             <button onclick="moveCountdown('up')">Up</button>
             <button onclick="moveCountdown('down')">Down</button>
@@ -89,7 +106,6 @@
             <button onclick="moveCountdown('increase')">Increase Size</button>
             <button onclick="moveCountdown('decrease')">Decrease Size</button>
             <br>
-            
             <button onclick="moveCountdown('rotate-left')">Rotate Left</button>
             <button onclick="moveCountdown('rotate-right')">Rotate Right</button>
             <br>
@@ -97,6 +113,10 @@
                 Movement Step Size: <input type="number" id="step-size" value="5" min="1">
             </label>
         </div>
+        <label>
+            Custom Thanks Text: <textarea id="thanks-input"></textarea>
+        </label>
+        <button onclick="applyThanksText()">Apply Thanks Text</button>
     </div>
     <script src="countdown.js"></script>
     <script src="firework.js"></script>
