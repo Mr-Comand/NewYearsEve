@@ -111,6 +111,9 @@ function loadThanksText() {
     document.getElementById('thanks-text').innerText = thanksText;
 }
 
+// Event listener for live updating the custom thanks text
+document.getElementById('thanks-input').addEventListener('input', applyThanksText);
+
 // Call the functions to set the checkbox state and apply the initial configuration
 setCheckboxState();
 applyCountdownConfig();
