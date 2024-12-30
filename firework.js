@@ -83,6 +83,7 @@ fireworkImage.onload = () => {
 
 // Function to create a new firework at a random position
 function createFirework(sequenz) {
+    const fireworkContainer = document.getElementById('firework-container');
     const firework = document.createElement('div');
     firework.className = 'firework';
     switch (sequenz) {
@@ -168,7 +169,7 @@ function createFirework(sequenz) {
     firework.addEventListener('animationend', () => {
         firework.remove();
     });
-    document.body.appendChild(firework);
+    fireworkContainer.appendChild(firework);
     setTimeout(() => firework.remove(), 2500);
 }
 
