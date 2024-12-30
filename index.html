@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
     <title>New Year's Eve</title>
     <style>
         .background-container.hidden {
             display: none;
         }
-        .config-icon, .github-logo {
+        .config-icon, .github-logo, .share-icon {
             color: rgba(128,128,128,0.8);
             position: fixed;
             bottom: 10px;
@@ -22,6 +23,9 @@
         }
         .config-icon {
             right: 50px;
+        }
+        .share-icon {
+            right: 90px;
         }
         .config-menu {
             cursor: default;
@@ -92,6 +96,7 @@
     <i class="fas fa-cog config-icon" id="config-icon" title="Config"></i>
     <i class="fab fa-github github-logo" id="github-logo" title="GitHub"
         onclick="window.open('https://github.com/Mr-Comand/NewYearsEve/', '_blank')"></i>
+    <i class="fas fa-share-alt share-icon" id="share-icon" title="Share"></i>
 
     <div class="config-menu" id="config-menu">
         <label>
@@ -122,6 +127,7 @@
     <script src="firework.js"></script>
     <script src="config.js"></script>
     <script src="hideCursor.js"></script>
+    <script src="compressUrl.js"></script>
 </body>
 
 </html>
